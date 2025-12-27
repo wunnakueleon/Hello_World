@@ -4,23 +4,30 @@ from turtle import Turtle, Screen
 from snake import Snake
 from food import Food
 from scoreboard import ScoreBoard
+from grid_board import GridBoard
 import time
 
 
+
+
 screen = Screen()
-screen.setup(width=600, height=600)
+screen.setup(width=640, height=640)
 screen.bgcolor('black')
-screen.title('Reverse Snake Game')
 
 screen.tracer(0)
+
+
+
+screen.title('Reverse Snake Game')
+
+grid = GridBoard()
 snake = Snake()
 food = Food()
 scoreboard = ScoreBoard()
 
 
+
 game_is_on = True
-
-
 
 
 screen.listen()
@@ -51,12 +58,9 @@ while game_is_on:
         if (snake.head.distance(every_seg.position()) <= 10):
             scoreboard.game_over()
             game_is_on = False
-    
-
-
 
     screen.update()
-    time.sleep(0.1)
+    time.sleep(0.05)
     
 screen.exitonclick()
 
