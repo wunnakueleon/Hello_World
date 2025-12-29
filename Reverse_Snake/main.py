@@ -38,12 +38,10 @@ def place_food(x, y):
 
     food.get_cor(x, y)
     food_pos = food.refresh(GRID_POSITION)
-    print(food_pos)
 
     if food_pos:
         snake_head_int = (int(snake.head.xcor()), int(snake.head.ycor()))
-        print(f"Is (0, 0) in VALID_POSITION? {(0, 0) in VALID_POSITION}")
-        print(f"Snake segments: {snake.segment_position}")
+        
         snake.snake_path = snake.bfs.path_finding(snake_head_int, food_pos, VALID_POSITION, obstacles=snake.segment_position)
         food_placed = True
         pick_fruit = True
