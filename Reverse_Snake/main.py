@@ -21,7 +21,6 @@ screen.tracer(0)
 screen.title('Reverse Snake Game')
 
 grid = GridBoard()
-click = Turtle()
 snake = Snake()
 food = Food()
 scoreboard = ScoreBoard()
@@ -42,7 +41,7 @@ def place_food(x, y):
     if food_pos:
         snake_head_int = (int(snake.head.xcor()), int(snake.head.ycor()))
         
-        snake.snake_path = snake.bfs.path_finding(snake_head_int, food_pos, VALID_POSITION, obstacles=snake.segment_position)
+        snake.snake_path = snake.bfs.path_finding(snake_head_int, food_pos, VALID_POSITION, snake.segments)
         food_placed = True
         pick_fruit = True
         

@@ -1,15 +1,16 @@
 from collections import deque
 
 
-
 class BFS():
 
-    def path_finding(self, start, end, valid_positions, obstacles=None):
+    def path_finding(self, start, end, valid_positions, obstacles):
         queue = deque([start])
         visited = set([start])
+        
 
-        if obstacles:
-            visited.update(obstacles)
+        for each_segment_position in obstacles:
+            visited.add(each_segment_position)
+
         node_coordinates = {}
 
         while queue:

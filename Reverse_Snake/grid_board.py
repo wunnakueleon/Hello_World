@@ -17,10 +17,11 @@ class GridBoard():
         self.new_bloc.color("white")
         self.new_bloc.shapesize(stretch_len=0.9, stretch_wid=0.9)
         self.new_bloc.penup()
-        GRID_POSITION.append(position)
+        
+
         self.new_bloc.goto(position)
+        GRID_POSITION.append(position)
         global VALID_POSITION
-        VALID_POSITION.add((0, 0))
         VALID_POSITION.add(position)
 
     def fill_up_grid(self):
