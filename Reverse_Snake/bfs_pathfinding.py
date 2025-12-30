@@ -6,10 +6,10 @@ class BFS():
     def path_finding(self, start, end, valid_positions, obstacles):
         queue = deque([start])
         visited = set([start])
-        
+        snake_segement_positions = []
 
-        for each_segment_position in obstacles:
-            visited.add(each_segment_position)
+        for each_seg_position in obstacles:
+            snake_segement_positions.append(each_seg_position.position())
 
         node_coordinates = {}
 
@@ -39,7 +39,7 @@ class BFS():
 
             for neighbour in neighbours:
 
-                if neighbour in valid_positions and neighbour not in visited:
+                if neighbour in valid_positions and neighbour not in visited and neighbour not in snake_segement_positions:
                     visited.add(neighbour)
                     queue.append(neighbour)
                     node_coordinates[neighbour] = current

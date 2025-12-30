@@ -5,6 +5,7 @@ ROW_DISTANCE_BLOC = 20
 COLUMN_DISTANCE_BLOC = 20
 
 GRID_POSITION = []
+GRIDS = []
 VALID_POSITION = set()
 
 class GridBoard():
@@ -17,9 +18,12 @@ class GridBoard():
         self.new_bloc.color("white")
         self.new_bloc.shapesize(stretch_len=0.9, stretch_wid=0.9)
         self.new_bloc.penup()
+        global GRIDS
+        GRIDS.append(self.new_bloc)
         
 
         self.new_bloc.goto(position)
+        global GRID_POSITION
         GRID_POSITION.append(position)
         global VALID_POSITION
         VALID_POSITION.add(position)

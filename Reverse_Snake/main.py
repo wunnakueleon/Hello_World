@@ -4,11 +4,9 @@ from turtle import Turtle, Screen
 from snake import Snake
 from food import Food, food_coordinates
 from scoreboard import ScoreBoard
-from grid_board import GridBoard, GRID_POSITION, VALID_POSITION
+from grid_board import GridBoard, GRID_POSITION, VALID_POSITION, GRIDS
+from bfs_pathfinding import BFS
 import time
-
-
-
 
 screen = Screen()
 screen.setup(width=640, height=640)
@@ -53,8 +51,8 @@ screen.onclick(place_food)
 
 
 while game_is_on:
-    if food_placed:
-        snake.move()
+    
+    snake.move()
 
     if snake.head.distance(food) <= 14 and pick_fruit:
         food.hideturtle()
@@ -63,6 +61,15 @@ while game_is_on:
         food_placed = False
         scoreboard.score_update()
 
+    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() < -280 or snake.head.ycor() > 280:
+        scoreboard.game_over()
+        for each_grid in GRIDS:
+            each_grid.hideturtle()
+
+        for each_segment in snake.segments:
+            each_segment.hideturtle()
+        game_is_on = False
+ 
     screen.update()
     time.sleep(0.1)
     
