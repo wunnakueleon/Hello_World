@@ -27,6 +27,7 @@ class BFS():
 
                 path.append(start)
                 path.reverse()
+                snake_segement_positions = None
                 return path
 
             x, y = current
