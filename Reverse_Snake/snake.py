@@ -34,8 +34,6 @@ class Snake():
         self.add_segments(self.segments[-1].position())
 
     def move(self):
-        print(f"🐍 Path exists: {self.snake_path is not None}, Path length: {len(self.snake_path) if self.snake_path else 0}")
-    
         if self.snake_path and len(self.snake_path) >= 1:  # Changed to >= 1
             for each_seg in range(len(self.segments) - 1, 0, -1):
                 x_cor = self.segments[each_seg - 1].xcor()
@@ -43,15 +41,12 @@ class Snake():
                 self.segments[each_seg].goto(x_cor, y_cor)
 
             if len(self.snake_path) > 1:
-                # Calculate direction when we have a next position
+
                 current_pos = self.snake_path[0]
                 next_pos = self.snake_path[1]
 
                 dx = next_pos[0] - current_pos[0]
                 dy = next_pos[1] - current_pos[1]
-
-                print(f"Current: {current_pos}, Next: {next_pos}")
-                print(f"dx={dx}, dy={dy}, old_direction={self.head_direction}")
                 
                 if dx > 0:
                     self.head_direction = 0
@@ -65,21 +60,15 @@ class Snake():
                 print(f"is heading updated?{self.head_direction}")
                 self.head.goto(next_pos)
             else:
-                # Just move to the last position without updating direction
-                print(f"🎯 Final position: {self.snake_path[0]}")
                 self.head.goto(self.snake_path[0])
         
             self.snake_path.pop(0)
 
             if len(self.snake_path) == 0:
-                print("🎯 Path is now empty, setting to None")
                 self.snake_path = None
        
 
         else:
-            # No path - move straight in grid-aligned way
-            print(f"➡️ Moving straight! Direction: {self.head_direction}")
-            
             for each_seg in range(len(self.segments) - 1, 0, -1):
                 x_cor = self.segments[each_seg - 1].xcor()
                 y_cor = self.segments[each_seg - 1].ycor()
@@ -101,5 +90,4 @@ class Snake():
                 # Default to East if direction is weird
                 next_pos = (current_x + 20, current_y)
             
-            print(f"➡️ Moving from ({current_x}, {current_y}) to {next_pos}")
             self.head.goto(next_pos)

@@ -55,17 +55,13 @@ while game_is_on:
     snake.move()
 
     if snake.head.distance(food) <= 14 and pick_fruit:
-        print("🍎 About to eat food and extend!")
         food.hideturtle()
-        print("🍎 Food hidden")
         snake.extend_segments()
-        print("🍎 Snake extended")  # ← Does this print?
         pick_fruit = False
         food_placed = False
         scoreboard.score_update()
-        print("🍎 Score updated")
         snake.snake_path = None
-        print("🍎 Path cleared to prevent collision")
+        
 
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() < -280 or snake.head.ycor() > 280:
         
@@ -80,9 +76,6 @@ while game_is_on:
 
     for each_segment in snake.segments[1:]:
         if snake.head.distance(each_segment) <= 14:
-            print(f"💥 COLLISION! Head at ({snake.head.xcor()}, {snake.head.ycor()})")
-            print(f"💥 Collided with segment at ({each_segment.xcor()}, {each_segment.ycor()})")
-            print(f"💥 Distance: {snake.head.distance(each_segment)}")
             # Hide everything FIRST (same as wall collision)
             for each_grid in GRIDS:
                 each_grid.hideturtle()
